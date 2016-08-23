@@ -8,7 +8,7 @@ require_relative 'tokens'
 
 
 who = "10153444670752573"
-url = "https://graph.facebook.com/v2.7/#{who}?fields=id,name,birthday,bio,currency,education,devices,email,gender,hometown,picture&access_token=#{TOKEN}"
+url = "https://graph.facebook.com/v2.7/#{who}?fields=id,name,birthday,bio,currency,education,devices,email,gender,hometown,picture&access_token=#{FB_TOKEN}"
 
 data = open(url).read
 data_cleaned = JSON.parse(data)
@@ -22,7 +22,7 @@ data_cleaned = JSON.parse(data)
 
 def user_info(id_fb)
   who = id_fb
-  url = "https://graph.facebook.com/v2.7/#{who}?fields=id,name,birthday,bio,currency,education,devices,email,gender,hometown,picture&access_token=#{TOKEN}"
+  url = "https://graph.facebook.com/v2.7/#{who}?fields=id,name,birthday,bio,currency,education,devices,email,gender,hometown,picture&access_token=#{FB_TOKEN}"
 
   data = open(url).read
   data_cleaned = JSON.parse(data)
