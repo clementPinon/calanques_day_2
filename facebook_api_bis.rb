@@ -21,40 +21,23 @@ require_relative 'tokens'
 # puts data_cleaned["id"]
 class FacebookApi
 
+  attr_reader :data, :name, :birthday
+
   def initialize(facebook_id)
       url = "https://graph.facebook.com/v2.7/#{facebook_id}?fields=id,name,birthday,bio,currency,education,devices,email,gender,hometown,picture&access_token=#{FB_TOKEN}"
       @data = JSON.parse(open(url).read)
   end
 
   def name
+    @name = @data['name']
   end
 
   def birthday
+    @birthday = @data['birthday']
   end
 
 end
 
-def user_name(id_fb)
-  who = id_fb
-  url = "https://graph.facebook.com/v2.7/#{who}?fields=id,name,birthday,bio,currency,education,devices,email,gender,hometown,picture&access_token=#{FB_TOKEN}"
-  #puts url
-  data = open(url).read
-  data_cleaned = JSON.parse(data)
-  return data_cleaned['name']
-end
-
-def user_birthday(id_fb)
-  who = id_fb
-  url = "https://graph.facebook.com/v2.7/#{who}?fields=id,name,birthday,bio,currency,education,devices,email,gender,hometown,picture&access_token=#{FB_TOKEN}"
-  #puts url
-  data = open(url).read
-  data_cleaned = JSON.parse(data)
-  if data_cleaned['birthday'].to_s.empty?
-    return "N/A"
-  else
-    return data_cleaned['birthday']
-  end
-end
 
 
 # puts "The requested name is: #{user_name("500991734")}"
